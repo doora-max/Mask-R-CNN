@@ -7,7 +7,7 @@ import argparse
 from glob import glob
 import copy
 
-from torchvision.models.detection import maskrcnn_resnet50_fpn as maskrcnn
+from torchvision.models.detection import maskrcnn_resnet50_fpn_v2 as maskrcnn
 import numpy as np
 
 # classes and randomly generated colours
@@ -22,7 +22,7 @@ boxes_group = parser.add_mutually_exclusive_group()
 masks_group = parser.add_mutually_exclusive_group()
 labels_group = parser.add_mutually_exclusive_group()
 parser.add_argument("--grey-background","-g",action="store_true",help="make the background monochromatic")
-parser.add_argument("--classes","-c",nargs="+",default=["all"],help="limit to certain classes (all or see classes.txt)")
+parser.add_argument("--classes","-c",nargs="+",default=["person"],help="limit to certain classes (all or see classes.txt)")
 parser.add_argument("--detection-threshold",default=0,type=float,help="confidence threshold for detection (0-1)")
 parser.add_argument("--mask-threshold",default=0,type=float,help="confidence threshold for segmentation mask (0-1)")
 parser.add_argument("--max-detections",default=1,type=int,help="maximum concurrent detections (leave 0 for unlimited)")
@@ -71,12 +71,11 @@ webcam.set_defaults(action="webcam")
 
 # parse args
 args = parser.parse_args()
-include_classes = ["person"]#detectioning only person
-#include_classes = classes[1:] if "all" in args.classes else args.classes
+include_classes = classes[1:] if "all" in args.classes else args.classes
 mode = args.action
 
 # load model
-model = maskrcnn(weights='MaskRCNN_ResNet50_FPN_Weights.DEFAULT').eval()
+model = maskrcnn(weights='MaskRCNN_ResNet50_FPN_V2_Weights.DEFAULT').eval()
 model.to("cuda" if torch.cuda.is_available() else "cpu")
 
 def detect(image):
