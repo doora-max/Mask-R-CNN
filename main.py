@@ -38,10 +38,10 @@ labels_group.add_argument("--text-thickness",default = 1,type = int,help = "thic
 subparsers = parser.add_subparsers()
 
 image = subparsers.add_parser("image")
-image.add_argument("--input-image","--input","-i",default = "C:\test.jpg",required = True,help = "input image")
+image.add_argument("--input-image","--input","-i",default = "example.png",required = True,help = "input image")
 image.set_defaults(action = "image")
 output_group = image.add_mutually_exclusive_group()
-output_group.add_argument("--save-path","--output","-o",default = "output.png",help = "output save location")
+output_group.add_argument("--save-path","--output","-o",default = "output.jpg",help = "output save location")
 output_group.add_argument("--no-save",action = "store_true",help = "do not save output image")
 
 folder = subparsers.add_parser("folder")
