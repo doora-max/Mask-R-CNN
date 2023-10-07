@@ -192,6 +192,7 @@ while True:
             cv2.imwrite(save_path,image)
             if mode == "image" or i >= len(files):
                 break
+    # break if q is pressed
     if cv2.waitKey(1) == ord("q"):
         break
     # calculate and print fps
