@@ -39,6 +39,7 @@ optional arguments:
   --max-detections MAX_DETECTIONS
                         maximum concurrent detections (leave 0 for unlimited)
   --hide-output         do not show output
+  --hide-score          do not show score
   --display-title DISPLAY_TITLE
                         window title
   --hide-boxes          do not show bounding boxes
